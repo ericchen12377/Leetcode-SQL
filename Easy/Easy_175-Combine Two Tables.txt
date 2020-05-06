@@ -1,0 +1,66 @@
+Table: Person
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| PersonId    | int     |
+| FirstName   | varchar |
+| LastName    | varchar |
++-------------+---------+
+PersonId is the primary key column for this table.
+Table: Address
+
++-------------+---------+
+| Column Name | Type    |
++-------------+---------+
+| AddressId   | int     |
+| PersonId    | int     |
+| City        | varchar |
+| State       | varchar |
++-------------+---------+
+AddressId is the primary key column for this table.
+ 
+
+Write a SQL query for a report that provides the following information for each person in the Person table, regardless if there is an address for each of those people:
+
+FirstName, LastName, City, State
+
+
+
+
+
+Create table example: 
+
+CREATE TABLE Person (
+    PersonId INT,
+    FirstName VARCHAR(256),
+    LastName VARCHAR(256)
+);
+
+INSERT INTO Person VALUES
+(1, 'A','aa'),
+(2, 'B','bb'),
+(3, 'C','cc');
+
+CREATE TABLE Address (
+    AddressId INT,
+    PersonId INT,
+    City VARCHAR(256),
+    State VARCHAR(256)
+);
+
+INSERT INTO Address VALUES
+(10001,1, 'Acity','AA'),
+(10002,2, 'Bcity','BB');
+
+Solution: 
+
+select FirstName, LastName, City, State 
+from Person as p
+left join Address as a 
+on p.PersonId = a.PersonId
+
+
+
+
+
